@@ -39,19 +39,16 @@ class Arm(inState: ListBuffer[mutable.Stack[Block]]) extends Predicate {
     }
   }
 
-  def putDown(A: Block): Unit =
+  def putDown(A: Block): Unit = {
     if (hold(A)) {
       val newStack = new mutable.Stack[Block]
       newStack.push(A)
       world += newStack
       currentBlock = None
     }
+  }
 
-  def displayState(): Unit = {
-    println("Current State")
-    println(s"current block $currentBlock")
-    println(s"current world $world")
-    println(s"current stack $currentStack")
-    println()
+  def displayState(agent: String): Unit = {
+    println(s"Final configuration for $agent: \n $world")
   }
 }

@@ -1,30 +1,32 @@
 package com.btesila.aose.lab7
 
-import akka.actor.{Actor, ActorLogging, Props}
-import com.btesila.aose.lab7.ArmActor.Actions.PickUp
-import com.btesila.aose.lab7.ArmActor.{NoToken, Token}
+import akka.actor.{Actor, Props}
+import akka.event.LoggingReceive
+import com.btesila.aose.lab7.ArmActor.{DisplayWorld, NoToken, Token, WakeUp}
 
 import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
 
-/**
-  * Created by Bii on 11/27/2016.
-  */
 class ArmActor(inState: ListBuffer[mutable.Stack[Block]]) extends Arm(inState) with Actor {
   import ArmActor.Actions._
- def receive = {
+
+  println(s"Starting actor ${self.path}")
+ def receive = LoggingReceive {
    case NoToken => context.become(waiting)
    case Stack(a, b) => stack(a, b)
    case Unstack(a, b) => unstack(a, b)
    case PickUp(a) => pickUp(a)
-   case PutDown(a) => a
+   case PutDown(a) => putDown(a)
+   case DisplayWorld => displayState(self.path.toString)
  }
 
-  def waiting: Receive = {
+  def waiting: Receive = LoggingReceive {
     case Token(action) => {
       context.become(receive)
       self ! action
     }
+    case WakeUp =>
+      context.become(receive)
   }
 }
 
@@ -39,6 +41,8 @@ object ArmActor {
 
   case class Token(action: Action)
   case object NoToken
+  case object DisplayWorld
+  case object WakeUp
 
   def props(initial: ListBuffer[mutable.Stack[Block]]): Props = Props(classOf[ArmActor], initial)
 }
