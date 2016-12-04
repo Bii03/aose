@@ -1,0 +1,16 @@
+com\btesila\aose\jade\labs\Bootstrap.class
+com\btesila\aose\jade\labs\MessageReceiver.class
+com\btesila\aose\jade\labs\SampleAgent.class
+com\btesila\aose\jade\labs\Receiver.class
+com\btesila\aose\jade\labs\HelloAgent.class
+com\btesila\aose\jade\labs\Pong$1.class
+com\btesila\aose\jade\labs\IncrementBaseNumber$1.class
+com\btesila\aose\jade\labs\IntegerMessageContentReceiver.class
+com\btesila\aose\jade\labs\Sender$1.class
+com\btesila\aose\jade\labs\Pong.class
+com\btesila\aose\jade\labs\MessageBuilder.class
+com\btesila\aose\jade\labs\Receiver$1.class
+com\btesila\aose\jade\labs\IncrementBaseNumber$State.class
+com\btesila\aose\jade\labs\Exercise2.class
+com\btesila\aose\jade\labs\Sender.class
+com\btesila\aose\jade\labs\IncrementBaseNumber.class
